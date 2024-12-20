@@ -39,3 +39,7 @@ jobs:
         if: ${{ github.event_name == 'release' }}
         run: |
           VERSION=${{ github.event.release.tag_name }} SSH_KEY=~/.ssh/id_rsa PKG_NAME=idt .github/scripts/idt-release.sh
+
+      - name: Cleanup
+        run: |
+          rm -rf ~/.ssh/id_rsa
