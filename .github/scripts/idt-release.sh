@@ -23,9 +23,9 @@ echo "Compiling version $VERSION"
 # compile system monitor on profiling-vm (Linux 5.4.0-42-generic)
 SSH_COMMAND="sudo docker run --rm --name=kubearmor-init --privileged -v '/tmp:/opt/kubearmor/BPF:rw' -v '/lib/modules:/lib/modules:ro' -v '/sys/kernel/security:/sys/kernel/security:ro' -v '/sys/kernel/debug:/sys/kernel/debug:ro' -v '/media/root/etc/os-release:/media/root/etc/os-release:ro' -v '/usr/src:/usr/src' kubearmor/kubearmor-init:${VERSION}; echo MD5SUM; md5sum /tmp/system_monitor.bpf.o"
 
-ssh -p 18022 -i $SSH_KEY vagrant@vm.accuknox.com -C $SSH_COMMAND
+ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 18022 -i $SSH_KEY vagrant@vm.accuknox.com -C $SSH_COMMAND
 
-scp -P 18022 -i $SSH_KEY vagrant@vm.accuknox.com:/tmp/system_monitor.bpf.o /tmp/system_monitor.bpf.o
+scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 18022 -i $SSH_KEY vagrant@vm.accuknox.com:/tmp/system_monitor.bpf.o /tmp/system_monitor.bpf.o
 
 echo "MD5SUM of COPIED SYSTEM MONITOR"
 md5sum /tmp/system_monitor.bpf.o
