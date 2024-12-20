@@ -24,15 +24,16 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_AUTHTOK }}
-      
+
       - uses: oras-project/setup-oras@v1
         name: Setup ORAS CLI
-      
+
       - name: Setup
         run: |
           mkdir -p $HOME/.ssh
           echo "${{ secrets.PROFILING_VM_SSH_KEY }}" > $HOME/.ssh/id_rsa
           chmod 600 $HOME/.ssh/id_rsa
+          ssh-keyscan -p 18022 vm.accuknox.com
 
       - name: Publish from workflow dispatch
         if: ${{ github.event_name == 'workflow_dispatch' }}
