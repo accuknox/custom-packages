@@ -31,9 +31,9 @@ jobs:
       - name: Setup
         run: |
           mkdir -p $HOME/.ssh
-          echo "${{ secrets.PROFILING_VM_SSH_KEY }}" > $HOME/.ssh/id_rsa
+          echo "${{ secrets.TEMP_VM_SSH_KEY }}" > $HOME/.ssh/id_rsa
           chmod 600 $HOME/.ssh/id_rsa
-          ssh-keyscan -p 18022 vm.accuknox.com
+          ssh-keyscan 159.89.175.183
 
       - name: Publish from workflow dispatch
         if: ${{ github.event_name == 'workflow_dispatch' }}
