@@ -33,7 +33,17 @@ jobs:
           mkdir -p $HOME/.ssh
           echo "${{ secrets.TEMP_VM_SSH_KEY }}" > $HOME/.ssh/id_rsa
           chmod 600 $HOME/.ssh/id_rsa
-          ssh-keyscan 159.89.175.183
+
+          ssh-keyscan 159.89.175.183 >> $HOME/.ssh/known_hosts
+          chmod 644 $HOME/.ssh/known_hosts
+      - name: Test SSH connection
+        run: |
+          if ssh -o BatchMode=yes ziggy@159.89.175.183 "echo ok"; then
+            echo "SSH connection successful"
+          else
+            echo "SSH FAILED!" >&2
+            exit 1
+          fi
 
       - name: Publish from workflow dispatch
         if: ${{ github.event_name == 'workflow_dispatch' }}
