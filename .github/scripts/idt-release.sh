@@ -25,7 +25,7 @@ SSH_COMMAND="sudo docker run --rm --name=kubearmor-init --privileged -v '/tmp:/o
 
 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY ziggy@159.89.175.183 -C $SSH_COMMAND
 
-scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -P 18022 -i $SSH_KEY 159.89.175.183:/home/ziggy/test/KubeArmor/KubeArmor/BPF/system_monitor.bpf.o  /tmp/system_monitor.bpf.o
+scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $SSH_KEY 159.89.175.183:/home/ziggy/test/KubeArmor/KubeArmor/BPF/system_monitor.bpf.o  /tmp/system_monitor.bpf.o
 
 echo "MD5SUM of COPIED SYSTEM MONITOR"
 md5sum /tmp/system_monitor.bpf.o
