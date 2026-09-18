@@ -44,6 +44,6 @@ tar xvzf ${KA_TAR}
 rm -rf ${KA_TAR}
 cp /tmp/system_monitor.bpf.o opt/kubearmor/BPF/system_monitor.bpf.o
 tar czf ${KA_TAR} opt/ usr/
-oras push --artifact-type=application/x-tar docker.io/kubearmor/kubearmor-systemd-${PKG_NAME}:${UNTAGGED_VERSION}_linux-amd64 ${KA_TAR}
+oras push --artifact-type=application/x-tar public.ecr.aws/k9v9d5v2/kubearmor-systemd-${PKG_NAME}:${UNTAGGED_VERSION}_linux-amd64 ${KA_TAR}
 
 echo "COMPLETE!"
